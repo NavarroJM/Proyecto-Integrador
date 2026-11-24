@@ -26,7 +26,7 @@ typedef struct nodoJuego {
 } tListaJuego;
 
 
-// Variables globales
+// Variables Globales
 FILE *archColeccion;
 tJuego juego, juegoAnterior;
 
@@ -71,7 +71,7 @@ void LimpiarBuffer() {
     int caracter;
 
     while ((caracter = getchar()) != '\n' && caracter != EOF) {
-        // Descarta los caracteres restantes de la linea.
+        // Descarta los Caracteres Restantes de la Linea.
     }
 }
 
@@ -102,7 +102,7 @@ void AgregarJuego(tListaJuego **pColeccion) {
     printf("\nJuego Agregado a la Coleccion.\n");
 }
 
-
+//Ingreso de los Datos por Juego
 tJuego IngresarJuego() {
 	
     tJuego juegoIngresado;
@@ -137,7 +137,7 @@ tJuego IngresarJuego() {
 }
 
 
-// Ordenamiento por insercion directa segun saga
+// Ordenamiento por Insercion Directa segun Saga
 void OrdenarPorSaga(tListaJuego **pColeccion) {
 	
     tListaJuego *actual;
@@ -173,7 +173,7 @@ void OrdenarPorSaga(tListaJuego **pColeccion) {
 }
 
 
-// Ordenamiento por insercion directa segun genero
+// Ordenamiento por Insercion Directa segun Genero
 void OrdenarPorGenero(tListaJuego **pColeccion) {
 	
     tListaJuego *actual;
@@ -209,7 +209,7 @@ void OrdenarPorGenero(tListaJuego **pColeccion) {
     *pColeccion = ordenada;
 }
 
-
+//Busqueda Secuencial segun el Titulo
 void Busqueda(tListaJuego *pColeccion) {
 	
     tListaJuego *aux;
@@ -225,7 +225,7 @@ void Busqueda(tListaJuego *pColeccion) {
         
     } else {
     	
-        printf("\nEl juego no existe en la coleccion.\n");
+        printf("\nEl Juego NO Existe en la Coleccion.\n");
     }
 }
 
@@ -255,7 +255,7 @@ bool ExisteJuego(tListaJuego *pColeccion, tListaJuego **pEncontrado) {
     return false;
 }
 
-
+//Grabado de la coleccion en un Archivo Binario
 void GrabarColeccion(tListaJuego *pColeccion) {
 	
     tListaJuego *aux;
@@ -264,7 +264,7 @@ void GrabarColeccion(tListaJuego *pColeccion) {
 
     if (archColeccion == NULL) {
     	
-        printf("No se puede iniciar el archivo.\n");
+        printf("No se Puede Iniciar el Archivo.\n");
         exit(EXIT_FAILURE);
     }
 
@@ -274,7 +274,7 @@ void GrabarColeccion(tListaJuego *pColeccion) {
     	
         if (fwrite(&aux->game, sizeof(tJuego), 1, archColeccion) != 1) {
         	
-            printf("Error al grabar la coleccion.\n");
+            printf("Error al Grabar la Coleccion.\n");
             fclose(archColeccion);
             exit(EXIT_FAILURE);
         }
@@ -285,7 +285,7 @@ void GrabarColeccion(tListaJuego *pColeccion) {
     fclose(archColeccion);
 }
 
-
+//Eliminar los Datos de un Juego
 void EliminarJuego(tListaJuego **pColeccion) {
 	
     tListaJuego *aux;
@@ -307,16 +307,16 @@ void EliminarJuego(tListaJuego **pColeccion) {
         }
 
         free(aux);
-        printf("\nJuego eliminado de la coleccion.\n");
+        printf("\nJuego Eliminado de la Coleccion.\n");
         
     } else {
     	
-        printf("\nEl juego no existe en la coleccion.\n");
+        printf("\nEl Juego NO Existe en la Coleccion.\n");
     }
 }
 
 
-// Funciones para los cortes de control
+// Funciones para los cortes de Control
 void PrincipioCorte() {
 	
     minTotales = 0;
@@ -343,13 +343,13 @@ void ProcesoCorteSaga() {
 
     if (archColeccion == NULL) {
     	
-        printf("No se encuentra el archivo.\n");
+        printf("No se Encuentra el Archivo.\n");
         return;
     }
 
     if (fread(&juego, sizeof(tJuego), 1, archColeccion) != 1) {
     	
-        printf("La coleccion esta vacia.\n");
+        printf("La Coleccion Esta Vacia.\n");
         fclose(archColeccion);
         return;
     }
@@ -410,13 +410,13 @@ void ProcesoCorteGenero() {
     archColeccion = fopen("Coleccion.dat", "rb");
 
     if (archColeccion == NULL) {
-        printf("No se encuentra el archivo.\n");
+        printf("No se Encuentra el Archivo.\n");
         return;
     }
 
     if (fread(&juego, sizeof(tJuego), 1, archColeccion) != 1) {
     	
-        printf("La coleccion esta vacia.\n");
+        printf("La Coleccion esta Vacia.\n");
         fclose(archColeccion);
         return;
     }
